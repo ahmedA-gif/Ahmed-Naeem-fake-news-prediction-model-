@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fake News Detection</h1>
+        <form action="/predict" method="POST">
+            <textarea name="news_text" rows="10" placeholder="Enter news article here..."></textarea><br>
+            <label for="model_choice">Select Model:</label>
+            <select name="model_choice" id="model_choice">
+                <option value="nb">Naïve Bayes</option>
+                <option value="rf">Random Forest</option>
+                <option value="lstm">LSTM</option>
+            </select><br>
+            <input type="submit" value="Predict">
+        </form>
+
+        <!-- Display User Input and Prediction -->
+        {% if user_input %}
+        <div class="result-container">
+            <h2>Your Input:</h2>
+            <p class="user-input">{{ user_input }}</p>
+            <h2>Prediction Result:</h2>
+            <p class="prediction-text">{{ prediction_text }}</p>
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            Powered by AHMEDAI
+        </div>
+    </div>
+</body>
+</html>
